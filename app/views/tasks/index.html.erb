@@ -1,0 +1,22 @@
+<h1 class="mb-4">My Tasks</h1>
+
+<% if @tasks.empty? %>
+  <div class="text-center text-muted py-5">
+    <i class="fa-solid fa-inbox fa-3x mb-3"></i>
+    <p>No tasks yet. Create your first one!</p>
+  </div>
+<% else %>
+  <ul class="list-group">
+    <% @tasks.each do |task| %>
+      <li class="list-group-item d-flex align-items-center gap-3">
+        <% if task.completed %>
+          <i class="fa-solid fa-circle-check text-success"></i>
+          <a href="<%= task_path(task) %>" class="text-decoration-line-through text-muted flex-grow-1"><%= task.title %></a>
+        <% else %>
+          <i class="fa-regular fa-circle text-secondary"></i>
+          <a href="<%= task_path(task) %>" class="flex-grow-1"><%= task.title %></a>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
